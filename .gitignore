@@ -1,0 +1,28 @@
+# Python
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+
+# Ollama models are stored by the system service, never in this repository.
+
+# Runtime data
+instance/
+sample_data/generated/
+*.db
+*.db-shm
+*.db-wal
+
+# Local configuration and operating-system files
+.env
+private_notes/
+.DS_Store
+Thumbs.db
+
+# Coverage and build artifacts
+.coverage
+htmlcov/
+build/
+dist/
+*.egg-info/

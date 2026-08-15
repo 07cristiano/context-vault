@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="ContextVault — private, offline document retrieval with inspectable evidence."
+    />
+    <title>ContextVault</title>
+    <link rel="stylesheet" href="/static/styles.css?v=4" />
+    <script src="/static/app.js?v=4" defer></script>
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar">
+        <a class="brand" href="/" aria-label="ContextVault home">
+          <span class="brand-mark" aria-hidden="true">
+            <span></span>
+            <span></span>
+            <span></span>
+          </span>
+          <span>
+            <strong>ContextVault</strong>
+            <small>Local evidence engine</small>
+          </span>
+        </a>
+        <div id="system-status" class="system-status" aria-live="polite">
+          <span class="status-dot status-dot--checking"></span>
+          <span>Checking local services…</span>
+        </div>
+      </header>
+
+      <main class="workspace">
+        <aside class="vault-panel" aria-labelledby="vault-heading">
+          <div class="panel-heading">
+            <div>
+              <p class="eyebrow">Your sources</p>
+              <h1 id="vault-heading">The vault</h1>
+            </div>
+            <span id="document-count" class="count-badge">0 / 20</span>
+          </div>
+
+          <form id="upload-form" class="upload-zone">
+            <input
+              id="file-input"
+              name="file"
+              type="file"
+              accept=".pdf,.txt,.md,.png,.jpg,.jpeg"
+              required
+            />
+            <label for="file-input">
+              <span class="upload-icon" aria-hidden="true">↑</span>
+              <strong>Add a source</strong>
+              <span>PDF, text, Markdown, or screenshot</span>
+              <small>Up to 15 MB · stored only on this device</small>
+            </label>
+          </form>
+
+          <div id="upload-progress" class="progress-card hidden" role="status">
+            <span class="spinner" aria-hidden="true"></span>
+            <div>
+              <strong>Indexing locally</strong>
+              <p id="upload-progress-detail">Extracting and embedding the source…</p>
+            </div>
+          </div>
+
+          <div id="document-list" class="document-list" aria-live="polite"></div>
+        </aside>
+
+        <section class="query-panel" aria-labelledby="query-heading">
+          <div class="hero-copy">
+            <p class="eyebrow">Offline hybrid retrieval + RAG</p>
+            <h2 id="query-heading">Ask your documents.<br />Inspect every answer.</h2>
+            <p>
+              ContextVault combines keyword and semantic search, then answers only from the
+              retrieved evidence.
+            </p>
+          </div>
+
+          <form id="query-form" class="query-form">
+            <label class="sr-only" for="question-input">Question</label>
+            <textarea
+              id="question-input"
+              name="question"
+              rows="2"
+              maxlength="500"
+              placeholder="What do my sources say about…"
+              required
+            ></textarea>
+            <button id="ask-button" class="primary-button" type="submit">
+              <span>Ask ContextVault</span>
+              <span aria-hidden="true">→</span>
+            </button>
+          </form>
+          <p class="query-hint">Enter to ask · Shift + Enter for a new line</p>
+
+          <div id="query-progress" class="query-progress hidden" role="status">
+            <div class="progress-track"><span></span></div>
+            <p>Embedding the question, fusing rankings, and generating from evidence…</p>
+          </div>
+
+          <section id="result-section" class="result-section hidden" aria-live="polite">
+            <article id="answer-card" class="answer-card">
+              <div class="answer-heading">
+                <span id="answer-state" class="answer-state">Grounded answer</span>
+                <span id="answer-timing" class="answer-timing"></span>
+              </div>
+              <p id="answer-text" class="answer-text"></p>
+              <div id="answer-citations" class="citation-list"></div>
+            </article>
+
+            <div class="evidence-heading">
+              <div>
+                <p class="eyebrow">Verification layer</p>
+                <h3>Evidence used</h3>
+              </div>
+              <span id="evidence-count" class="count-badge"></span>
+            </div>
+            <div id="evidence-list" class="evidence-list"></div>
+
+            <details class="trace-panel">
+              <summary>
+                <span>Retrieval trace</span>
+                <small>Why these chunks ranked</small>
+              </summary>
+              <div id="retrieval-trace" class="trace-list"></div>
+            </details>
+          </section>
+
+          <section id="empty-state" class="empty-state">
+            <div class="empty-illustration" aria-hidden="true">
+              <span>S1</span><span>S2</span><span>S3</span>
+            </div>
+            <h3>Evidence before eloquence</h3>
+            <p>Upload a source, ask a question, and verify the retrieved passages yourself.</p>
+          </section>
+        </section>
+      </main>
+    </div>
+
+    <div id="toast" class="toast hidden" role="alert"></div>
+  </body>
+</html>

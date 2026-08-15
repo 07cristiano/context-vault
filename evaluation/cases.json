@@ -1,0 +1,22 @@
+[
+  {
+    "question": "How does the system protect confidential material?",
+    "expected_document": "privacy.md"
+  },
+  {
+    "question": "What combines exact-word matches with meaning-based matches?",
+    "expected_document": "retrieval.md"
+  },
+  {
+    "question": "Which layer checks incoming API data structures?",
+    "expected_document": "architecture.md"
+  },
+  {
+    "question": "How are screenshots made searchable?",
+    "expected_document": "multimodal.md"
+  },
+  {
+    "question": "Why is an approximate vector index unnecessary here?",
+    "expected_document": "retrieval.md"
+  }
+]
